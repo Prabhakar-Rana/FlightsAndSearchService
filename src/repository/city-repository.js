@@ -1,7 +1,7 @@
 const { City } = require("../models/index");
 
 class CityRepository {
-  async creatCity({ name }) {
+  async createCity({ name }) {
     try {
       const city = await City.create({ name });
       return city;
@@ -26,7 +26,7 @@ class CityRepository {
 
   async updateCity(cityId, data) {
     try {
-      const city = await City.update(data, {
+      const city = await City.update(data, {  // {name : "updated city"}
         where: {
           lastName: null,
         },
