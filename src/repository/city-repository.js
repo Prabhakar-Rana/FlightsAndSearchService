@@ -26,14 +26,18 @@ class CityRepository {
   }
 
   async updateCity(cityId, data) {
-    try {
-      const city = await City.update(data, {  // {name : "updated city"}
+    try {                                                   // below code also work but give empty array
+      /*const city = await City.update(data, {  // {name : "updated city"}
         where: {
-          lastName: null,
+          id : cityId
         },
-      });
+      });*/
+      const city = await City.findByPk(cityId);
+      city.name = data.name;
+      await city.save();
       return city;
-    } catch {
+    } catch(error) {
+      
       console.log("Something went wrong in repository layey");
       throw { error };
     }
